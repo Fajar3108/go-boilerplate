@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/Fajar3108/go-boilerplate/internal/config"
+	"github.com/Fajar3108/go-boilerplate/internal/database"
 	"github.com/Fajar3108/go-boilerplate/internal/http/routes"
 	"github.com/gofiber/fiber/v2"
 	"strconv"
@@ -9,6 +10,11 @@ import (
 )
 
 func NewApp() error {
+	_, err := database.SetupDatabaseConnection()
+	if err != nil {
+		return err
+	}
+
 	app := fiber.New(fiber.Config{
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
@@ -17,7 +23,7 @@ func NewApp() error {
 
 	routes.SetupRoutes(app)
 
-	err := StartServer(app)
+	err = StartServer(app)
 	if err != nil {
 		return err
 	}

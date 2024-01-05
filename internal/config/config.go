@@ -9,6 +9,12 @@ type Config struct {
 	Port        int    `mapstructure:"PORT"`
 	Environment string `mapstructure:"ENVIRONMENT"`
 	Debug       bool   `mapstructure:"DEBUG"`
+
+	DBHost     string `mapstructure:"DB_HOST"`
+	DBPort     string `mapstructure:"DB_PORT"`
+	DBDatabase string `mapstructure:"DB_DATABASE"`
+	DBUsername string `mapstructure:"DB_USERNAME"`
+	DBPassword string `mapstructure:"DB_PASSWORD"`
 }
 
 var AppConfig Config
