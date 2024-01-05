@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	if err := config.IntializeAppConfig(); err != nil {
+	if err := config.InitializeAppConfig(); err != nil {
 		logger.Fatal(err.Error(), logrus.Fields{constants.LoggerCategory: constants.LoggerCategoryConfig})
 	}
 

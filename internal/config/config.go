@@ -19,7 +19,7 @@ type Config struct {
 
 var AppConfig Config
 
-func IntializeAppConfig() error {
+func InitializeAppConfig() error {
 	viper.SetConfigName(".env")
 	viper.SetConfigType("env")
 	viper.AddConfigPath(".")
