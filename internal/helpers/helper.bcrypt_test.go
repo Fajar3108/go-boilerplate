@@ -29,3 +29,25 @@ func TestGenerateHash(t *testing.T) {
 		})
 	}
 }
+
+func TestValidateHash(t *testing.T) {
+	text := "secret"
+	hashedText, _ := GenerateHash(text)
+	tests := []struct {
+		name           string
+		text           string
+		hashedText     string
+		expectedResult bool
+	}{
+		{name: "Valid", text: text, hashedText: hashedText, expectedResult: true},
+		{name: "Invalid Hash", text: text, hashedText: "", expectedResult: false},
+		{name: "Invalid Text", text: "", hashedText: hashedText, expectedResult: false},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			isValid := ValidateHash(test.text, test.hashedText)
+			assert.Equal(t, test.expectedResult, isValid)
+		})
+	}
+}
